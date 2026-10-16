@@ -3,13 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jarvis Widget Demo</title>
+  <title>Jarvis Helpdesk - Demo</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1b1f2a;
+      --muted: #5b6475;
+      --accent: #4f46e5;
+      --border: #e4e7ef;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117;
+        --card: #181b24;
+        --text: #eef0f6;
+        --muted: #9aa3b5;
+        --accent: #818cf8;
+        --border: #2a2f3d;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header, main, footer { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+    header { padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-weight: 700; font-size: 1.1rem; }
+    .brand span { color: var(--accent); }
+    .hero { padding: 64px 0 32px; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; margin: 0 0 16px; }
+    .lead { color: var(--muted); font-size: 1.1rem; max-width: 560px; margin: 0 0 24px; }
+    .hint {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); padding: 32px 0 64px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+    .card h2 { font-size: 1.05rem; margin: 0 0 8px; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    footer { padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; }
+  </style>
 </head>
 <body>
-  <h1>Trang demo widget chat</h1>
-  <p>Bấm vào widget ở góc màn hình để nhắn thử.</p>
+  <header>
+    <div class="brand">Jarvis <span>Helpdesk</span></div>
+  </header>
 
-  <!-- Start of Rocket.Chat Livechat Script -->
+  <main>
+    <section class="hero">
+      <h1>Cần hỗ trợ? Nhắn cho chúng tôi ngay.</h1>
+      <p class="lead">Trang demo cho widget chat. Bấm biểu tượng chat ở góc dưới bên phải để bắt đầu một cuộc trò chuyện.</p>
+      <span class="hint">Thử nhắn một tin ở góc phải &#8595;</span>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Phản hồi nhanh</h2>
+        <p>Tin nhắn của khách về thẳng Trò chuyện trong Jarvis Helpdesk.</p>
+      </div>
+      <div class="card">
+        <h2>Trợ lý AI</h2>
+        <p>Bật Tự động phản hồi cho kênh Webchat để AI trả lời giúp bạn.</p>
+      </div>
+      <div class="card">
+        <h2>Một đoạn mã</h2>
+        <p>Dán một đoạn script vào website là có widget trên mọi trang.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Trang demo, không phải trang chính thức.</footer>
+
   <script type="text/javascript">
     (function(w, d, s, u) {
       w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
