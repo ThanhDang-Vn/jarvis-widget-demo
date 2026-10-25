@@ -107,11 +107,11 @@
     })(window, document, 'script', 'https://livechat.jarvis.cx/livechat');
   </script>
   <script type="text/javascript">
-    // Widget giữ token khách trong iframe (khác domain), nên đổi token mới để mở cuộc trò chuyện mới.
+    // Token khách nằm trong iframe (khác domain) và có dạng <uuid>/<tenantid>.
+    // logoutUser của widget tạo token mới nhưng vẫn giữ tenant, nên tin nhắn vẫn về đúng helpdesk.
     document.getElementById('new-chat').addEventListener('click', function() {
       try { localStorage.removeItem('jarvis_visitor_session'); } catch (e) {}
-      var token = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
-      window.RocketChat(function() { this.setGuestToken(token); this.maximizeWidget(); });
+      window.RocketChat(function() { this.logoutUser(); this.maximizeWidget(); });
     });
   </script>
 </body>
