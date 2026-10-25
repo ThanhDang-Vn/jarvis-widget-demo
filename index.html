@@ -35,6 +35,17 @@
     header { padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
     .brand { font-weight: 700; font-size: 1.1rem; }
     .brand span { color: var(--accent); }
+    .new-chat {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .new-chat:hover { border-color: var(--accent); color: var(--accent); }
     .hero { padding: 64px 0 32px; }
     h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; margin: 0 0 16px; }
     .lead { color: var(--muted); font-size: 1.1rem; max-width: 560px; margin: 0 0 24px; }
@@ -56,6 +67,7 @@
 <body>
   <header>
     <div class="brand">Jarvis <span>Helpdesk</span></div>
+    <button type="button" class="new-chat" id="new-chat">+ Cuộc trò chuyện mới</button>
   </header>
 
   <main>
@@ -93,6 +105,14 @@
       w.ticketplus.tenantid = '08783c2a-a7d6-45a7-a961-fa9b3edb61c4';
       w.RocketChat(function() { this.setLanguage('vi-VN') });
     })(window, document, 'script', 'https://livechat.jarvis.cx/livechat');
+  </script>
+  <script type="text/javascript">
+    // Widget giữ token khách trong iframe (khác domain), nên đổi token mới để mở cuộc trò chuyện mới.
+    document.getElementById('new-chat').addEventListener('click', function() {
+      try { localStorage.removeItem('jarvis_visitor_session'); } catch (e) {}
+      var token = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
+      window.RocketChat(function() { this.setGuestToken(token); this.maximizeWidget(); });
+    });
   </script>
 </body>
 </html>
